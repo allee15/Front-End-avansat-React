@@ -1,7 +1,8 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {setAnimals} from "../../store/slices/animalSlice";
 import {useParams} from "react-router-dom";
+import AnimalDetails from "../../components/AnimalDetails";
 
 function AnimalDetailsPage() {
     const token = useSelector(state => state.authentication.token)
@@ -28,7 +29,11 @@ function AnimalDetailsPage() {
     }, [token])
     return (
         <div>
-            {animalDetails && JSON.stringify(animalDetails)}
+            {animalDetails ? (
+                <AnimalDetails animal={animalDetails} />
+            ) : (
+                <p>Loading...</p>
+            )}
         </div>
     )
 }

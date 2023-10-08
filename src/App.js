@@ -1,9 +1,9 @@
 import './App.css';
 import {useEffect, useState} from "react";
-import Counter from "./components/Counter";
-import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {setAnimals} from "./store/slices/animalSlice";
+import AnimalProfile from "./components/AnimalProfile";
+import { Link } from 'react-router-dom';
 
 function App() {
     const [counter, setCounter] = useState(0);
@@ -27,15 +27,22 @@ function App() {
 
         getData();
     }, [dispatch, token])
-  return (
-    <div className="App">
-        <Counter counter={counter} setCounter={setCounter} />
-        <Counter counter={counter} setCounter={setCounter} />
-        <Link to="/login">Go to login page</Link>
-        <iframe src="https://www.youtube.com/embed/xaXbs1fRFRM\"></iframe>
-        {animals.map(animal => <Link to={`/animal/${animal.id}`}>{animal.name}</Link>)}
-    </div>
-  );
+    return (
+        <div className="App">
+            <nav className="navbar">
+                <Link to="/" className="navbar-item">Home</Link>
+                <Link to="/contact" className="navbar-item">Contact Us</Link>
+                <div className="navbar-right">
+                    <Link to="/login" className="navbar-item">Login</Link>
+                </div>
+            </nav>
+            <div style={{overflowY: 'auto', height: '100vh'}}>
+                {animals.map((animal) => (
+                    <AnimalProfile key={animal.id} animal={animal} />
+                ))}
+            </div>
+        </div>
+    );
 }
 
 export default App;
