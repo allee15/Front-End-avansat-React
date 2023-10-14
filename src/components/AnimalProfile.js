@@ -1,14 +1,19 @@
 import React from 'react';
 import './AnimalProfile.css';
 import { useNavigate } from 'react-router-dom';
+import {useSelector} from "react-redux";
 
 
 const AnimalProfile = ({ animal }) => {
-    const [showDetails, setShowDetails] = React.useState(false);
     const navigate = useNavigate();
+    const token = useSelector(state => state.authentication.token);
 
     const handleClick = () => {
-        navigate(`/animal/${animal.id}`);
+        if (token) {
+            navigate(`/animal/${animal.id}`);
+        } else {
+            navigate('/login');
+        }
     }
 
     return (
@@ -18,20 +23,14 @@ const AnimalProfile = ({ animal }) => {
                      alt={animal.name}
                      className="animalImage" />
             </div>
-            <div className="animalInfo">
-                <h1 className="animalName">{animal.name}</h1>
-                <div className="animalTypeAge">
-                    <p className="animalType">Type: {animal.type}</p>
-                    <p className="animalAge">Age: {animal.age}</p>
-                </div>
-                <div className="animalBreedDetails">
-                    <p className="animalBreed primaryBreed">{`Primary breed: ${animal.breeds.primary}`}</p>
-                    <p className="animalBreed secondaryBreed">{`Secondary breed: ${animal.breeds.secondary ? animal.breeds.secondary : `none` }`}</p>
-                </div>
-                <div className="animalDetails">
-                    <p className="animalColor">{`Fur color: ${animal.colors.primary}`}</p>
-                    <button className="detailsButton" onClick={handleClick}>More Details</button>
-                </div>
+            <div className="leftAlign" >
+                <h1>{animal.name}</h1>
+                <p>Type: {animal.type}</p>
+                <p>Age: {animal.age}</p>
+                <p>{`Primary breed: ${animal.breeds.primary}`}</p>
+                <p>{`Secondary breed: ${animal.breeds.secondary ? animal.breeds.secondary : `none` }`}</p>
+                <p>{`Fur color: ${animal.colors.primary}`}</p>
+                <button style={{backgroundColor: 'darkslategrey', color: 'white'}} type="submit" className='btn btn-success' onClick={handleClick}>More Details</button>
             </div>
         </div>
     );

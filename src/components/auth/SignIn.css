@@ -1,0 +1,20 @@
+
+.containerLogIn {
+    background: url('/public/pexels-luis-dalvan-1770809.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+form {
+    background: white;
+    padding: 2em;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 500px;
+}

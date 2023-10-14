@@ -1,0 +1,23 @@
+
+
+.userProfile {
+    background-image: url('/public/pexels-asad-photo-maldives-3293148.jpg');
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: white;
+}
+
+.message {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    width: 200px;
+}

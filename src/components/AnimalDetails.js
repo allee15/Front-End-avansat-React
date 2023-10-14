@@ -1,5 +1,8 @@
 import './AnimalDetails.css';
 import React from "react";
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 function AnimalDetails({ animal }) {
     return (
         <div className="animal-details">

@@ -54,3 +54,9 @@
 .navbar-item:hover {
   color: hotpink;
 }
+
+.backgroundImage {
+  background-image: url('/public/pexels-oleksandr-p-345522.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}

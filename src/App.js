@@ -1,12 +1,12 @@
 import './App.css';
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {setAnimals} from "./store/slices/animalSlice";
 import AnimalProfile from "./components/AnimalProfile";
 import { Link } from 'react-router-dom';
 
+
 function App() {
-    const [counter, setCounter] = useState(0);
     const token = useSelector(state => state.authentication.token)
     const animals = useSelector(state => state.animals.animals)
     const dispatch = useDispatch();
@@ -28,12 +28,16 @@ function App() {
         getData();
     }, [dispatch, token])
     return (
-        <div className="App">
+        <div className="App backgroundImage">
             <nav className="navbar">
                 <Link to="/" className="navbar-item">Home</Link>
                 <Link to="/contact" className="navbar-item">Contact Us</Link>
                 <div className="navbar-right">
-                    <Link to="/login" className="navbar-item">Login</Link>
+                    {token ? (
+                        <Link to="/user-profile" className="navbar-item">User Profile</Link>
+                    ) : (
+                        <Link to="/login" className="navbar-item">Login</Link>
+                    )}
                 </div>
             </nav>
             <div style={{overflowY: 'auto', height: '100vh'}}>

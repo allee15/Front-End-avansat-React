@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {setAnimals} from "../../store/slices/animalSlice";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import AnimalDetails from "../../components/AnimalDetails";
 
 function AnimalDetailsPage() {
     const token = useSelector(state => state.authentication.token)
     const [animalDetails, setAnimalDetails] = useState(null)
     const params = useParams();
+    const navigate = useNavigate();
 
     console.log(params)
 
@@ -27,8 +28,14 @@ function AnimalDetailsPage() {
 
         getData();
     }, [token])
+
+    if (!token) {
+        navigate('/login');
+        return null;
+    }
+
     return (
-        <div>
+        <div className="backgroundImage">
             {animalDetails ? (
                 <AnimalDetails animal={animalDetails} />
             ) : (

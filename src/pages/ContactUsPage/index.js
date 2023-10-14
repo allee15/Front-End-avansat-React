@@ -2,9 +2,14 @@ import React, {useState} from 'react';
 import emailjs from 'emailjs-com';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useSelector } from 'react-redux';
+import './index.css';
+import {Link} from "react-router-dom";
 
 export default function ContactUsPage() {
+    const token = useSelector(state => state.authentication.token);
     const [message, setMessage] = useState()
+
     const sendEmail = (e) => {
         e.preventDefault();
 
@@ -18,17 +23,23 @@ export default function ContactUsPage() {
     };
 
     return (
-        <div>
+        <div className="contactUsPage">
             <h1>Contact Us</h1>
-            <h2>If you're interested in adopting one of our pets, write us here its name, how can we reach out to you and we will come as soon as possible with a response to you!</h2>
-            <form onSubmit={sendEmail}>
-                <textarea style={{width: '100%', height: '200px', paddingLeft: '20px', paddingRight: '20px'}} value={message} onChange={e => setMessage(e.target.value)} name="message"></textarea>
-                <button style={{backgroundColor: 'darkslategrey', color: 'white', width: '100%', height: '50px'}} type="submit">Send</button>
-            </form>
+            {token ? (
+                <form onSubmit={sendEmail}>
+                    <p className="grayText">If you're interested in adopting one of our pets, write us here its name, how can we reach out to you and we will come as soon as possible with a response to you!</p>
+                    <textarea value={message} onChange={e => setMessage(e.target.value)} name="message"></textarea>
+                    <button style={{backgroundColor: 'palevioletred', color: 'white'}} type="submit" className='btn btn-success'>Send</button>
+                </form>
+            ) : (
+                <div>
+                    <p>You have to log in before sending us a message!</p>
+                    <Link to="/login">
+                        <button style={{backgroundColor: 'palevioletred', color: 'white'}} type="button" className='btn btn-success'>Log in >></button>
+                    </Link>
+                </div>
+            )}
             <ToastContainer />
         </div>
     );
 }
-
-
-

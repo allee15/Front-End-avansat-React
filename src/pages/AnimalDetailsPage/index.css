@@ -20,3 +20,7 @@
     font-size: 1.2em;
     color: #666;
 }
+
+.backgroundImage {
+    background-image: url('/public/pexels-oleksandr-p-345522.jpg');
+}
