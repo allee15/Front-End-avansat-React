@@ -44,7 +44,6 @@ function ExtendedRouterProvider() {
         fetchTokenAndStore();
     }, [dispatch]);
 
-    console.log(auth)
     return <RouterProvider router={routerConfig()} />
 }
 root.render(

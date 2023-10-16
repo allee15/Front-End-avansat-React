@@ -6,6 +6,8 @@ import {Link} from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './SignIn.css';
+import ReusableButton from "../reusablaComponents/ReusableButton";
+
 
 const SignIn = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -39,11 +41,11 @@ const SignIn = () => {
                     {errors.password && <p className='text-danger'>Password is required</p>}
                 </div>
                 <div>
-                    <button style={{backgroundColor: 'darkslategrey', color: 'white'}} type="submit" className='btn btn-success'>Log in</button>
+                    <ReusableButton size="sm" variant="green" type="submit">Log in</ReusableButton>
                 </div>
                 <div>
                     <Link to="/register">
-                        <button style={{backgroundColor: 'darkslategrey', color: 'white'}} type="button" className='btn btn-success'>Don't have an account? Register!</button>
+                        <ReusableButton size="sm" variant="green" type="button">Don't have an account? Register!</ReusableButton>
                     </Link>
                 </div>
             </form>

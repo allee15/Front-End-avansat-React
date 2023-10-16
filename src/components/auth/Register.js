@@ -6,6 +6,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import './Register.css';
+import ReusableButton from "../reusablaComponents/ReusableButton";
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors }, getValues } = useForm();
@@ -55,7 +56,8 @@ const Register = () => {
                     <input type="password" className='form-control' {...register('confirmPassword', { required: true })} />
                     {errors.confirmPassword && <p className='text-danger'>Confirm password is required</p>}
                 </div>
-                <button style={{backgroundColor: 'darkslategrey', color: 'white'}} type="submit" className='btn btn-success'>Register</button>
+                <ReusableButton size="sm" variant="green" type="submit">Register</ReusableButton>
+
             </form>
             <ToastContainer />
         </div>

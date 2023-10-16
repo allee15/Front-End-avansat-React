@@ -2,6 +2,7 @@ import React from 'react';
 import './AnimalProfile.css';
 import { useNavigate } from 'react-router-dom';
 import {useSelector} from "react-redux";
+import ReusableButton from "./reusablaComponents/ReusableButton";
 
 
 const AnimalProfile = ({ animal }) => {
@@ -30,7 +31,7 @@ const AnimalProfile = ({ animal }) => {
                 <p>{`Primary breed: ${animal.breeds.primary}`}</p>
                 <p>{`Secondary breed: ${animal.breeds.secondary ? animal.breeds.secondary : `none` }`}</p>
                 <p>{`Fur color: ${animal.colors.primary}`}</p>
-                <button style={{backgroundColor: 'darkslategrey', color: 'white'}} type="submit" className='btn btn-success' onClick={handleClick}>More Details</button>
+                <ReusableButton size="sm" variant="green" type="submit" onClick={handleClick}>More Details</ReusableButton>
             </div>
         </div>
     );
