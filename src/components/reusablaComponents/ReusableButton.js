@@ -1,9 +1,4 @@
-import { useState } from "react";
-
 function ReusableButton(props) {
-    const [size] = useState(props.size);
-    const [variant] = useState(props.variant);
-
     const buttonStyle = {
         border: 'none',
         borderRadius: '4px',

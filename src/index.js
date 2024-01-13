@@ -1,11 +1,9 @@
 import React, {Suspense, useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 import {RouterProvider} from "react-router-dom";
 import routerConfig from "./routerConfig";
-import {Provider, useDispatch, useSelector} from "react-redux";
+import {Provider, useDispatch} from "react-redux";
 import store from "./store";
 import {setToken} from "./store/slices/authenticationSlice";
 
@@ -34,7 +32,6 @@ async function fetchAccessToken() {
 
 function ExtendedRouterProvider() {
     const dispatch = useDispatch();
-    const auth = useSelector(state => state.authentication);
 
     React.useEffect(() => {
         async function fetchTokenAndStore() {
@@ -55,8 +52,3 @@ root.render(
       </Provider>
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

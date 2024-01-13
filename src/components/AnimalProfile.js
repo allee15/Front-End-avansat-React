@@ -5,7 +5,7 @@ import {useSelector} from "react-redux";
 import ReusableButton from "./reusablaComponents/ReusableButton";
 
 
-const AnimalProfile = ({ animal }) => {
+const AnimalProfile = ({ animal, onHover, selected }) => {
     const navigate = useNavigate();
     const token = useSelector(state => state.authentication.token);
 
@@ -18,7 +18,7 @@ const AnimalProfile = ({ animal }) => {
     }
 
     return (
-        <div className="animalProfile">
+        <div className={`animalProfile ${selected ? 'animalProfileHover' : ''}`} onMouseEnter={() => onHover(animal.id)} onMouseLeave={() => onHover(null)}>
             <div className="animalImageContainer">
                 <img src={animal.photos[0]?.large ? animal.photos[0]?.large : "https://cdn-icons-png.flaticon.com/512/64/64431.png"}
                      alt={animal.name}

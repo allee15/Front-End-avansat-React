@@ -1,5 +1,5 @@
 import './App.css';
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {setAnimals} from "./store/slices/animalSlice";
 import AnimalProfile from "./components/AnimalProfile";
@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 
 
 function App() {
+    // Va ajuta la comunicarea bidirectionala intre App.js si AnimalProfile.js pentru a selecta profilul animalului dorit
+    const [selectedAnimal, setSelectedAnimal] = useState(null);
     const token = useSelector(state => state.authentication.token)
     const animals = useSelector(state => state.animals.animals)
     const dispatch = useDispatch();
@@ -42,7 +44,7 @@ function App() {
             </nav>
             <div style={{overflowY: 'auto', height: '100vh'}}>
                 {animals.map((animal) => (
-                    <AnimalProfile key={animal.id} animal={animal} />
+                    <AnimalProfile key={animal.id} animal={animal} onHover={(id) => setSelectedAnimal(id)} selected={selectedAnimal === animal.id}/>
                 ))}
             </div>
         </div>

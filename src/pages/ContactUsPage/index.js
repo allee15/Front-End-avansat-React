@@ -15,10 +15,13 @@ export default function ContactUsPage() {
     const sendEmail = (e) => {
         e.preventDefault();
 
-        emailjs.sendForm('service_e7nt70t', 'template_c10k7xl', e.target, 'gJcEBYj0HnQj8Vf1Y')
+        emailjs.sendForm(process.env.REACT_APP_EMAIL_SERVICEID, process.env.REACT_APP_TEMPLATEID, e.target, process.env.REACT_APP_USERID)
             .then((result) => {
                 setMessage("");
                 toast.success("Message successfully sent!");
+                setTimeout(() => {
+                    navigate("/")
+                }, 2000)
             }, (error) => {
                 toast.error("An error has occured. Try again!");
             });
